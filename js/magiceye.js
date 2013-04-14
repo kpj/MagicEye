@@ -2,6 +2,8 @@ var patternDiv = 8;
 var invert = -1;
 
 var ctx = null;
+var imgWidth = -1;
+var imgHeight = -1;
 
 window.onload = function() {
 	document.getElementById("uploadimage").addEventListener("change", draw, false)
@@ -20,6 +22,9 @@ function draw(ev) {
 	img.onload = function() {
 		ctx.drawImage(img, 0, 0);
 		url.revokeObjectURL(src);
+
+		imgWidth = img.width;
+		imgHeight = img.height;
 	}
 }
 
@@ -33,17 +38,18 @@ function getPixel(imgData, x, y) {
 }
 
 function transform() {
-	var imgDataIn = ctx.getImageData(0, 0, 800, 400);
+	if(imgWidth == -1 || imgHeight == -1) {
+		alert("Something is wrong with your image. Abort...");
+		return;
+	}
+
+	var imgDataIn = ctx.getImageData(0, 0, imgWidth, imgHeight);
 	var sourceHeight = imgDataIn.height;
 	var sourceWidth = imgDataIn.width;
 
 	var imgDataOut = ctx.createImageData(imgDataIn.width, imgDataIn.height);
 
 	var patternWidth = imgDataIn.width / patternDiv;
-
-	console.log(patternWidth);
-	console.log(sourceWidth);
-	console.log(sourceHeight);
 
 	// iterate through all pixels
 	for(var x = 0; x < sourceWidth; x++) {
