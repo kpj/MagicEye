@@ -20,6 +20,8 @@ function draw(ev) {
 
 	img.src = src;
 	img.onload = function() {
+		ctx.clearRect(0, 0, document.getElementById("canvas").width, document.getElementById("canvas").height);
+		console.log(document.getElementById("canvas").width);
 		ctx.drawImage(img, 0, 0);
 		url.revokeObjectURL(src);
 
@@ -42,6 +44,8 @@ function transform() {
 		alert("Something is wrong with your image. Abort...");
 		return;
 	}
+
+	ctx2.clearRect(0, 0, document.getElementById("canvas2").width, document.getElementById("canvas2").height);
 
 	var imgDataIn = ctx.getImageData(0, 0, imgWidth, imgHeight);
 	var sourceHeight = imgDataIn.height;
