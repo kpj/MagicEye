@@ -5,32 +5,23 @@ var ctx = null;
 
 window.onload = function() {
 	document.getElementById("uploadimage").addEventListener("change", draw, false)
-
-	ctx = document.getElementById('canvas').getContext('2d')
+	ctx = document.getElementById("canvas").getContext("2d")
 }
 
 function draw(ev) {
-	ctx = document.getElementById('canvas').getContext('2d'),
+	ctx = document.getElementById("canvas").getContext("2d"),
 		img = new Image(),
 		f = document.getElementById("uploadimage").files[0],
 		url = window.URL || window.webkitURL,
 		src = url.createObjectURL(f);
 
-	img.src = src;
-	img.onload = function() {
+		img.src = src;
+		img.onload = function() {
 		ctx.drawImage(img, 0, 0);
 		url.revokeObjectURL(src);
 	}
 }
 
-/*
-	type:
-		0 -> red
-		1 -> green
-		2 -> blue
-		3 -> alpha
-	each component: 0 - 255
-*/
 function getPixel(imgData, x, y) {
 	return [
 		imgData.data[((y*(imgData.width*4)) + (x*4)) + 0],
@@ -70,8 +61,8 @@ function transform() {
 
 			if (x < patternWidth) {
 				imgDataOut.data[redCoord] = col;
-        imgDataOut.data[greenCoord] = col;
-        imgDataOut.data[blueCoord] = col;
+				imgDataOut.data[greenCoord] = col;
+				imgDataOut.data[blueCoord] = col;
 				imgDataOut.data[alphaCoord] = imgDataIn.data[alphaCoord];
 			} else {
 				// actual transformation
