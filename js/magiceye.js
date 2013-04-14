@@ -6,6 +6,7 @@ var ctx = null;
 window.onload = function() {
 	document.getElementById("uploadimage").addEventListener("change", draw, false)
 	ctx = document.getElementById("canvas").getContext("2d")
+	ctx2 = document.getElementById("canvas2").getContext("2d")
 }
 
 function draw(ev) {
@@ -67,7 +68,7 @@ function transform() {
 			} else {
 				// actual transformation
 				var shift = Math.floor(getPixel(imgDataIn, x, y)[0] / patternDiv);
-				var pix = getPixel(imgDataOut, x - patternWidth + shift * invert, y);
+				var pix = getPixel(imgDataOut, x - patternWidth + shift * (document.getElementById("inverter").checked?-invert:invert), y);
 
 				imgDataOut.data[redCoord] = pix[0];
 				imgDataOut.data[greenCoord] = pix[1];
@@ -77,5 +78,5 @@ function transform() {
 		}
 	}
 
-	ctx.putImageData(imgDataOut, 0, 0);
+	ctx2.putImageData(imgDataOut, 0, 0);
 }

@@ -5,10 +5,16 @@
 		<title>Magic Eye Generator</title>
 	</head>
 	<body>
-		<div id="container">
-			<canvas id="canvas" width="800" height="400"></canvas>
-			<input type="file" name="img" size="65" id="uploadimage" />
-			<input type="button" value="Generate" onClick='javascript:transform()' />
+		<div id="input">
+			<canvas id="canvas" width="800" height="400"></canvas><br>
+			<input type="file" name="img" size="65" id="uploadimage" /><br>
+			<input type="button" value="Generate" onClick='javascript:transform()' /><br>
+			Scale pattern width: <input type="text" value="8" id="patDiv" onChange='javascript:patternDiv = this.value' /><br>
+			Invert: <input type="checkbox" id="inverter" /><br>
+			Note: Use 800x400 images with black background for best results.
+		</div>
+		<div id="output">
+			<canvas id="canvas2" width="800" height="400"></canvas>
 		</div>
 	</body>
 </html>
