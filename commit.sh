@@ -1,3 +1,4 @@
+#hi
 msg="$1"
 
 git add .
