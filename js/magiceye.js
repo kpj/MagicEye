@@ -2,6 +2,8 @@ var patternDiv = 8;
 var invert = -1;
 
 var ctx = null;
+var imgWidth = -1;
+var imgHeight = -1;
 
 window.onload = function() {
 	document.getElementById("uploadimage").addEventListener("change", draw, false)
@@ -10,16 +12,21 @@ window.onload = function() {
 }
 
 function draw(ev) {
-	ctx = document.getElementById("canvas").getContext("2d"),
-		img = new Image(),
-		f = document.getElementById("uploadimage").files[0],
-		url = window.URL || window.webkitURL,
-		src = url.createObjectURL(f);
+	ctx = document.getElementById("canvas").getContext("2d");
+	img = new Image();
+	f = document.getElementById("uploadimage").files[0];
+	url = window.URL || window.webkitURL;
+	src = url.createObjectURL(f);
 
-		img.src = src;
-		img.onload = function() {
+	img.src = src;
+	img.onload = function() {
+		ctx.clearRect(0, 0, document.getElementById("canvas").width, document.getElementById("canvas").height);
+		console.log(document.getElementById("canvas").width);
 		ctx.drawImage(img, 0, 0);
 		url.revokeObjectURL(src);
+
+		imgWidth = img.width;
+		imgHeight = img.height;
 	}
 }
 
@@ -33,17 +40,20 @@ function getPixel(imgData, x, y) {
 }
 
 function transform() {
-	var imgDataIn = ctx.getImageData(0, 0, 800, 400);
+	if(imgWidth == -1 || imgHeight == -1) {
+		alert("Something is wrong with your image. Abort...");
+		return;
+	}
+
+	ctx2.clearRect(0, 0, document.getElementById("canvas2").width, document.getElementById("canvas2").height);
+
+	var imgDataIn = ctx.getImageData(0, 0, imgWidth, imgHeight);
 	var sourceHeight = imgDataIn.height;
 	var sourceWidth = imgDataIn.width;
 
 	var imgDataOut = ctx.createImageData(imgDataIn.width, imgDataIn.height);
 
 	var patternWidth = imgDataIn.width / patternDiv;
-
-	console.log(patternWidth);
-	console.log(sourceWidth);
-	console.log(sourceHeight);
 
 	// iterate through all pixels
 	for(var x = 0; x < sourceWidth; x++) {
