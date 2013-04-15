@@ -4,9 +4,14 @@ body {
 
 #input {
 	float:left;
-	width:800px;
 }
 #output {
 	float:right;
-	width:800px;
+}
+
+#input, #output {
+	width:900px;
+	height:600px;
+	border-style:dashed;
+	border-width:1px;
 }
