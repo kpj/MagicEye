@@ -30,6 +30,17 @@ function getPixel(imgData, x, y) {
 		imgData.data[((y*(imgData.width*4)) + (x*4)) + 3]
 	]
 }
+/*
+	Sets data for pixel at given position
+*/
+function setPixel(imgData, x, y, r, g, b, a) {
+	imgData.data[((imgData.width * y) + x) * 4 + 0] = r;
+	imgData.data[((imgData.width * y) + x) * 4 + 1] = g;
+	imgData.data[((imgData.width * y) + x) * 4 + 2] = b;
+	imgData.data[((imgData.width * y) + x) * 4 + 3] = a;
+
+	return imgData;
+}
 
 /*
 	Loads image data and iterates through all pixels
