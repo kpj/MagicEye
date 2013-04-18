@@ -9,13 +9,13 @@ function applyMagic1(imgDataIn, imgDataOut, x, y) {
 	var col = Math.floor(Math.random() * 256);
 
 	if (x < patternWidth) {
-		imgDataOut = setPixel(imgDataOut, x, y, col, col, col, getPixel(imgDataIn, x, y)[3]);
+		imgDataOut = setPixel(imgDataOut, x, y, col, col, col, getPixel(imgDataIn, x, y).alpha);
 	} else {
 		// actual transformation
-		var shift = Math.floor(getPixel(imgDataIn, x, y)[0] / patternDiv);
+		var shift = Math.floor(getPixel(imgDataIn, x, y).red / patternDiv);
 		var pix = getPixel(imgDataOut, x - patternWidth + shift * (document.getElementById("inverter").checked?-invert:invert), y);
 
-		imgDataOut = setPixel(imgDataOut, x, y, pix[0], pix[1], pix[2], pix[3]);
+		imgDataOut = setPixel(imgDataOut, x, y, pix.red, pix.green, pix.blue, pix.alpha);
 	}
 
 	return imgDataOut;

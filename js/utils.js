@@ -23,12 +23,12 @@ function draw(ev) {
 	Returns pixel ("rgba") at position x, y
 */
 function getPixel(imgData, x, y) {
-	return [
-		imgData.data[((y*(imgData.width*4)) + (x*4)) + 0],
-		imgData.data[((y*(imgData.width*4)) + (x*4)) + 1],
-		imgData.data[((y*(imgData.width*4)) + (x*4)) + 2],
-		imgData.data[((y*(imgData.width*4)) + (x*4)) + 3]
-	]
+	return {
+		"red":		imgData.data[((y*(imgData.width*4)) + (x*4)) + 0],
+		"green":	imgData.data[((y*(imgData.width*4)) + (x*4)) + 1],
+		"blue":		imgData.data[((y*(imgData.width*4)) + (x*4)) + 2],
+		"alpha":	imgData.data[((y*(imgData.width*4)) + (x*4)) + 3]
+	}
 }
 /*
 	Sets data for pixel at given position
