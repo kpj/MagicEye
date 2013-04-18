@@ -1,7 +1,9 @@
 /*
 	Current transform method
 */
-function applyMagic(imgDataIn, imgDataOut, patternWidth, x, y) {
+function applyMagic1(imgDataIn, imgDataOut, x, y) {
+	var patternWidth = imgDataIn.width / patternDiv;
+
 	var redCoord = ((imgDataIn.width * y) + x) * 4;
 	var greenCoord = ((imgDataIn.width * y) + x) * 4 + 1;
 	var blueCoord = ((imgDataIn.width * y) + x) * 4 + 2;

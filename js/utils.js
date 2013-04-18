@@ -48,13 +48,10 @@ function transform() {
 	// create output image
 	var imgDataOut = ctx.createImageData(imgDataIn.width, imgDataIn.height);
 
-	// calculate pattern length
-	var patternWidth = imgDataIn.width / patternDiv;
-
 	// iterate through all pixels
 	for(var x = 0; x < imgDataIn.width; x++) {
 		for(var y = 0; y < imgDataIn.height; y++) {
-			imgDataOut = applyMagic(imgDataIn, imgDataOut, patternWidth, x, y);
+			imgDataOut = applyMagic1(imgDataIn, imgDataOut, x, y);
 		}
 	}
 
